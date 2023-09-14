@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HP 35s Calculator</title>
+  <style>
+    /* Add some basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #calculator {
+      width: 300px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 0 auto;
+    }
+    #screen {
+      height: 40px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      padding: 5px;
+      text-align: right;
+    }
+    button {
+      width: 60px;
+      height: 40px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="calculator">
+    <div id="screen">0</div>
+    <button onclick="clearScreen()">C</button>
+    <button onclick="appendToScreen('7')">7</button>
+    <button onclick="appendToScreen('8')">8</button>
+    <button onclick="appendToScreen('9')">9</button>
+    <button onclick="appendToScreen('/')">/</button>
+    <br>
+    <button onclick="appendToScreen('4')">4</button>
+    <button onclick="appendToScreen('5')">5</button>
+    <button onclick="appendToScreen('6')">6</button>
+    <button onclick="appendToScreen('*')">*</button>
+    <br>
+    <button onclick="appendToScreen('1')">1</button>
+    <button onclick="appendToScreen('2')">2</button>
+    <button onclick="appendToScreen('3')">3</button>
+    <button onclick="appendToScreen('-')">-</button>
+    <br>
+    <button onclick="appendToScreen('0')">0</button>
+    <button onclick="appendToScreen('.')">.</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="appendToScreen('+')">+</button>
+  </div>
+
+  <script>
+    // Functions to interact with the calculator screen
+    function clearScreen() {
+      document.getElementById('screen').innerText = '0';
+    }
+
+    function appendToScreen(value) {
+      const screen = document.getElementById('screen');
+      if (screen.innerText === '0') {
+        screen.innerText = value;
+      } else {
+        screen.innerText += value;
+      }
+    }
+
+    function calculate() {
+      const screen = document.getElementById('screen');
+      try {
+        // Evaluate the expression on the screen
+        const result = eval(screen.innerText);
+        // Show the result on the screen
+        screen.innerText = result;
+      } catch (error) {
+        // Display "Error" if there was an issue with the calculation
+        screen.innerText = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
